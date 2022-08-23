@@ -33,6 +33,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hostel.Security.Application
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hostel.Catalogue.Application", "src\Core\Application\Hostel.Catalogue.Application\Hostel.Catalogue.Application.csproj", "{F006F854-9EBA-4EBD-AEAF-453BC10BE56E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{B95BAB39-D6C3-4013-BD9C-12CB0DAEC0DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hostel.Shared", "src\Shared\Hostel.Shared\Hostel.Shared.csproj", "{9AA0ABBB-5DAE-485A-847B-5958F6203423}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +75,10 @@ Global
 		{F006F854-9EBA-4EBD-AEAF-453BC10BE56E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F006F854-9EBA-4EBD-AEAF-453BC10BE56E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F006F854-9EBA-4EBD-AEAF-453BC10BE56E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AA0ABBB-5DAE-485A-847B-5958F6203423}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AA0ABBB-5DAE-485A-847B-5958F6203423}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AA0ABBB-5DAE-485A-847B-5958F6203423}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AA0ABBB-5DAE-485A-847B-5958F6203423}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +98,8 @@ Global
 		{4D8411F1-B0C9-439D-B954-8BA821BEF1A7} = {882CB920-C34B-4B8D-9862-2F1445607F94}
 		{86A0100A-0C11-4FB2-A8C1-27BE546B6277} = {6717E457-DF96-478A-AB1D-E2B1A15C06BD}
 		{F006F854-9EBA-4EBD-AEAF-453BC10BE56E} = {6717E457-DF96-478A-AB1D-E2B1A15C06BD}
+		{B95BAB39-D6C3-4013-BD9C-12CB0DAEC0DB} = {52CF7A46-727C-4FFC-B39F-D18EB2C6F2B2}
+		{9AA0ABBB-5DAE-485A-847B-5958F6203423} = {B95BAB39-D6C3-4013-BD9C-12CB0DAEC0DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2DF9C1ED-D8EF-4880-84E3-A64AF0325388}
