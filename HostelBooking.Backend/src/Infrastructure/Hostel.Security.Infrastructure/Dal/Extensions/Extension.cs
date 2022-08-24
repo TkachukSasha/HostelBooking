@@ -1,0 +1,62 @@
+﻿using Hostel.Security.Infrastructure.Dal.Options;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Hostel.Security.Infrastructure.Dal.Extensions
+{
+    public static class Extension
+    {
+        public static IServiceCollection AddDatabase(IServiceCollection services)
+        {
+            services.ConfigureOptions<DatabaseOptionsSetup>();
+
+            services.AddDbContext<SecurityContext>((serviceProvider, dbContextOptionsBuilder) =>
+            {
+                var databaseOptions = serviceProvider.GetService<IOptions<DatabaseOptions>>()!.Value;
+
+                dbContextOptionsBuilder.UseSqlServer(databaseOptions.DefaultConnection, sqlServerAction =>
+                {
+                    sqlServerAction.EnableRetryOnFailure(databaseOptions.MaxRetryCount);
+
+                    sqlServerAction.CommandTimeout(databaseOptions.CommandTimeout);
+
+                });
+
+                dbContextOptionsBuilder.EnableDetailedErrors(databaseOptions.EnableDetailedErrors);
+
+                dbContextOptionsBuilder.EnableSensitiveDataLogging(databaseOptions.EnableSensitiveDataLogging);
+            });
+
+            return services;
+        }
+
+        public static IApplicationBuilder MigrateDatabase(this IApplicationBuilder applicationBuilder,
+            IConfiguration configuration)
+        {
+            if (applicationBuilder is null)
+                throw new ArgumentNullException(nameof(applicationBuilder));
+
+            if (configuration is null)
+                throw new ArgumentNullException(nameof(applicationBuilder));
+
+            if (bool.TryParse(configuration["Db:Migration:Enable"], out var migrateDatabase) && migrateDatabase)
+            {
+                using (var serviceScope = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    var context = serviceScope.ServiceProvider.GetRequiredService<SecurityContext>();
+                    context.Database.Migrate();
+                }
+            }
+
+            return applicationBuilder;
+        }
+    }
+}
