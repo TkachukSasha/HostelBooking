@@ -1,4 +1,14 @@
+using Hostel.Security.Application.Extensions;
+using Hostel.Security.Infrastructure.Dal.Extensions;
+using Hostel.Security.Infrastructure.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddDatabase();
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -14,6 +24,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

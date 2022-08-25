@@ -10,12 +10,13 @@
             public static string UpdateSuccessfully = "Update Successfully!";
         }
 
-        public static class BasResponses
+        public static class BadResponses
         {
             public static string UserNotFind = "User isn't find!";
             public static string TokenNotFind = "User isn't find!";
             public static string NotAdded = "Added operation failed!";
             public static string NotDeleted = "Deleted operation failed!";
+            public static string SomethingWentWrong = "Something went wrong!";
         }
     }
 }

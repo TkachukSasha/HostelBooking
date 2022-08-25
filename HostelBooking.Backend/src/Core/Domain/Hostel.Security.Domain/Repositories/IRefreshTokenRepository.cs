@@ -9,5 +9,7 @@ namespace Hostel.Security.Domain.Repositories
         Task CreateAsync(RefreshToken refreshToken);
 
         Task DeleteAsync(int id);
+
+        Task DeleteAllAsync(int userId);
     }
 }

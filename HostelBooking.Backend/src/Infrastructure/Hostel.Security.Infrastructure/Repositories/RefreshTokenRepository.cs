@@ -55,6 +55,16 @@ namespace Hostel.Security.Infrastructure.Repositories
             }
         }
 
+        public async Task DeleteAllAsync(int userId)
+        {
+            IEnumerable<RefreshToken> refreshTokens = await _context.RefreshToken
+                .Where(t => t.UserId == userId)
+                .ToListAsync();
+
+            _context.RefreshToken.RemoveRange(refreshTokens);
+            await _context.SaveChangesAsync();
+        }
+
         public void Dispose()
         {
             Dispose(true);
