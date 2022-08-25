@@ -15,7 +15,7 @@ namespace Hostel.Security.Infrastructure.Dal.Configurations
                    .IsRequired();
 
             builder.HasOne(x => x.User)
-                       .WithMany(x => x.RefreshToken)
+                       .WithMany(x => x.RefreshTokens)
                        .HasForeignKey(x => x.UserId);
         }
     }

@@ -29,6 +29,9 @@ namespace Hostel.Security.Domain.ValueObjects
         public static implicit operator Email(string value) => value is null ? null : new Email(value);
         public static implicit operator string(Email value) => value.Value;
 
+        public override bool Equals(object obj) => obj is Email && Equals((Email)obj);
+        public override int GetHashCode() => Value.GetHashCode();
+
         public override string ToString() => Value;
     }
 }

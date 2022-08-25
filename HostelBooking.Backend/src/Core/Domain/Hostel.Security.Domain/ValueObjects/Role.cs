@@ -36,6 +36,9 @@ namespace Hostel.Security.Domain.ValueObjects
 
         public static implicit operator string(Role value) => value?.Value;
 
+        public override bool Equals(object obj) => obj is Role && Equals((Role)obj);
+        public override int GetHashCode() => Value.GetHashCode();
+
         public override string ToString() => Value;
     }
 }

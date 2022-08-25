@@ -7,7 +7,7 @@ namespace Hostel.Security.Domain.Entities
     {
         public User()
         {
-            RefreshToken = new HashSet<RefreshToken>();
+            RefreshTokens = new HashSet<RefreshToken>();
         }
 
         public User(string email,
@@ -30,6 +30,6 @@ namespace Hostel.Security.Domain.Entities
         public DateTime CreatedAt { get; private set; }
         public bool? IsDeleted { get; set; }
 
-        public ICollection<RefreshToken> RefreshToken { get; set; }
+        public ICollection<RefreshToken> RefreshTokens { get; set; }
     }
 }
