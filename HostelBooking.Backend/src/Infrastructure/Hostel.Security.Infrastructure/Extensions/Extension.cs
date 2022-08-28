@@ -44,6 +44,8 @@ namespace Hostel.Security.Infrastructure.Extensions
                 };
             });
 
+            services.AddAuthorization();
+
             return services;
         }
     }

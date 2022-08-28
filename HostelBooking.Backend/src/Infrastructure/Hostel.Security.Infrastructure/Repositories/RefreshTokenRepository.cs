@@ -32,8 +32,8 @@ namespace Hostel.Security.Infrastructure.Repositories
         {
             try
             {
-                var user = await _context.RefreshToken.FirstOrDefaultAsync(x => x.UserId == id);
-                _context.RefreshToken.Remove(user);
+                var refreshToken = await _context.RefreshToken.FirstOrDefaultAsync(x => x.RefreshTokenId == id);
+                _context.RefreshToken.Remove(refreshToken);
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)

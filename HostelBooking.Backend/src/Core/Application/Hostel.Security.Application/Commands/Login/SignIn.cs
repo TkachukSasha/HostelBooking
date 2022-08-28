@@ -70,8 +70,6 @@ namespace Hostel.Security.Application.Commands.Login
                 RefreshToken = refreshToken
             };
 
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
-
             _tokenStorage.Set(result);
         }
     }

@@ -19,7 +19,7 @@ namespace Hostel.Security.Infrastructure.Repositories
         {
             try
             {
-                var user = await _context.User.FirstOrDefaultAsync(x => x.Email.Equals(email));
+                var user = await _context.User.FirstOrDefaultAsync(x => x.Email == email);
                 return user;
             }
             catch (Exception ex)
@@ -32,7 +32,7 @@ namespace Hostel.Security.Infrastructure.Repositories
         {
             try
             {
-                var user = await _context.User.FirstOrDefaultAsync(x => x.UserId.Equals(userId));
+                var user = await _context.User.FirstOrDefaultAsync(x => x.UserId == userId);
                 return user;
             }
             catch (Exception ex)

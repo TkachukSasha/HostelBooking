@@ -6,6 +6,7 @@ using Hostel.Security.Application.Dto;
 using Hostel.Security.Domain.Repositories;
 using Hostel.Shared.Types;
 using Hostel.Shared.Types.Const;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -37,6 +38,12 @@ namespace Hostel.Security.Api.Controllers.V1
             _refreshTokenRepository = refreshTokenRepository;
         }
 
+        /// <summary>
+        /// Authorize user in system
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [Route(Routes.Login)]
         [HttpPost]
@@ -47,6 +54,12 @@ namespace Hostel.Security.Api.Controllers.V1
             return jwt;
         }
 
+        /// <summary>
+        /// Register user in system
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [Route(Routes.Register)]
         [HttpPost]
@@ -57,16 +70,26 @@ namespace Hostel.Security.Api.Controllers.V1
             return jwt;
         }
 
+        /// <summary>
+        /// Refresh user token
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         [Route(Routes.Refresh)]
         [HttpPost]
-        public async Task<ActionResult<JwtDto>> RefreshToken([FromBody] Refresh command, CancellationToken token)
+        public async Task<ActionResult<string>> RefreshToken([FromBody] Refresh command, CancellationToken token)
         {
             await _refreshHandler.HandleAsync(command, token);
             var jwt = _tokenStorage.Get();
-            return jwt;
+            return jwt.RefreshToken;
         }
 
-        [Authorize]
+        /// <summary>
+        /// Logout user from system
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route(Routes.Logout)]
         [HttpDelete]
         public async Task<IActionResult> Logout()

@@ -13,7 +13,7 @@ namespace Hostel.Security.Domain.ValueObjects
                 throw new HostelException(Codes.InvalidPassword,
                     $"Passsword: {value} is invalid!");
 
-            if (value.Length is < 8 or > 16)
+            if (value.Length is < 8 or > 200)
                 throw new HostelException(Codes.InvalidPassword,
                     $"Passsword: {value} is invalid!");
 

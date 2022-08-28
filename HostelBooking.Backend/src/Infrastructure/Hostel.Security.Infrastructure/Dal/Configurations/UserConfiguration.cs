@@ -18,7 +18,7 @@ namespace Hostel.Security.Infrastructure.Dal.Configurations
 
             builder.Property(x => x.Password)
                    .HasConversion(x => x.Value, x => new Password(x))
-                   .HasMaxLength(16)
+                   .HasMaxLength(200)
                    .IsRequired();
 
             builder.Property(x => x.Role)

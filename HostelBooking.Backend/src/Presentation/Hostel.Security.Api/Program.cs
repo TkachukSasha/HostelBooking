@@ -1,3 +1,4 @@
+using Hostel.Security.Api.Extensions;
 using Hostel.Security.Application.Extensions;
 using Hostel.Security.Infrastructure.Dal.Extensions;
 using Hostel.Security.Infrastructure.Extensions;
@@ -8,11 +9,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddDatabase();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
-
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddDefaultServices();
 
 var app = builder.Build();
 
@@ -23,6 +20,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseCors("AllowAll");
 
 app.UseAuthentication();
 app.UseAuthorization();

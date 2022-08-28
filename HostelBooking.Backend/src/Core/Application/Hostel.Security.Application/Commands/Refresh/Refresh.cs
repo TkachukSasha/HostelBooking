@@ -70,7 +70,7 @@ namespace Hostel.Security.Application.Commands.Refresh
 
             var existingUser = await _userRepository.GetByEmailAsync(user.Email);
 
-            if (existingUser is null)
+            if (existingUser == null)
                 throw new HostelException(Codes.EmailIsNotFound,
                    $"Email: {existingUser.Email} is not found!");
 
