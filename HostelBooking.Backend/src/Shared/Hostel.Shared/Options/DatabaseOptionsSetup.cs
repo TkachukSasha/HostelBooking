@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace Hostel.Security.Infrastructure.Dal.Options
+namespace Hostel.Shared.Options
 {
     public class DatabaseOptionsSetup : IConfigureOptions<DatabaseOptions>
     {

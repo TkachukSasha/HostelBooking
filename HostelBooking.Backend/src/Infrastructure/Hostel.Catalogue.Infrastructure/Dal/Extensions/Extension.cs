@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace Hostel.Security.Infrastructure.Dal.Extensions
+namespace Hostel.Catalogue.Infrastructure.Dal.Extensions
 {
     public static class Extension
     {
@@ -13,7 +13,7 @@ namespace Hostel.Security.Infrastructure.Dal.Extensions
         {
             services.ConfigureOptions<DatabaseOptionsSetup>();
 
-            services.AddDbContext<SecurityContext>((serviceProvider, dbContextOptionsBuilder) =>
+            services.AddDbContext<CatalogueContext>((serviceProvider, dbContextOptionsBuilder) =>
             {
                 var databaseOptions = serviceProvider.GetService<IOptions<DatabaseOptions>>()!.Value;
 
@@ -46,7 +46,7 @@ namespace Hostel.Security.Infrastructure.Dal.Extensions
             {
                 using (var serviceScope = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
-                    var context = serviceScope.ServiceProvider.GetRequiredService<SecurityContext>();
+                    var context = serviceScope.ServiceProvider.GetRequiredService<CatalogueContext>();
                     context.Database.Migrate();
                 }
             }

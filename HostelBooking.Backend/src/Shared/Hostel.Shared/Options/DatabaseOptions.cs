@@ -1,4 +1,4 @@
-﻿namespace Hostel.Security.Infrastructure.Dal.Options
+﻿namespace Hostel.Shared.Options
 {
     public class DatabaseOptions
     {
