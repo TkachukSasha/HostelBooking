@@ -1,6 +1,7 @@
-﻿using Hostel.Catalogue.Domain.Repositories;
+﻿using Hostel.Catalogue.Application.Common.Repositories;
 using Hostel.Catalogue.Infrastructure.Repositories;
 using Hostel.Shared.Exceptions.Middleware;
+using Hostel.Shared.Types;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Hostel.Catalogue.Infrastructure.Extensions
@@ -13,6 +14,7 @@ namespace Hostel.Catalogue.Infrastructure.Extensions
 
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

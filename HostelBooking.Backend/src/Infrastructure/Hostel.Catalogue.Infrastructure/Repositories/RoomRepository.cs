@@ -1,11 +1,11 @@
-﻿using Hostel.Catalogue.Domain.Entities;
-using Hostel.Catalogue.Domain.Repositories;
+﻿using Hostel.Catalogue.Application.Common.Repositories;
+using Hostel.Catalogue.Domain.Entities;
 using Hostel.Catalogue.Infrastructure.Dal;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hostel.Catalogue.Infrastructure.Repositories
 {
-    public class RoomRepository : IRoomRepository
+    public class RoomRepository : IRoomRepository, IDisposable
     {
         private CatalogueContext _context;
         private bool _disposed;

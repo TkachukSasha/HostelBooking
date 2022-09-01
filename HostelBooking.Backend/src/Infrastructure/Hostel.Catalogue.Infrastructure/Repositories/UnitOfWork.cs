@@ -1,13 +1,13 @@
-﻿using Hostel.Security.Infrastructure.Dal;
+﻿using Hostel.Catalogue.Infrastructure.Dal;
 using Hostel.Shared.Types;
 
-namespace Hostel.Security.Infrastructure.Repositories
+namespace Hostel.Catalogue.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly SecurityContext _context;
+        private readonly CatalogueContext _context;
 
-        public UnitOfWork(SecurityContext context)
+        public UnitOfWork(CatalogueContext context)
         {
             _context = context;
         }

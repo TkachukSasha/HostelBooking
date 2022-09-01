@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Hostel.Shared\Hostel.Shared.csproj" />
+    <ProjectReference Include="..\..\Domain\Hostel.Catalogue.Domain\Hostel.Catalogue.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

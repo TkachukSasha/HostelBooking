@@ -1,10 +1,18 @@
+using Hostel.Catalogue.Api.Extensions;
+using Hostel.Catalogue.Application.Extensions;
+using Hostel.Catalogue.Infrastructure.Dal.Extensions;
+using Hostel.Catalogue.Infrastructure.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddDatabase();
+builder.Services.AddInfrastructure();
+builder.Services.AddApplication();
+builder.Services.AddDefaultServices();
 
 var app = builder.Build();
+
+app.MigrateDatabase(app.Configuration);
 
 if (app.Environment.IsDevelopment())
 {
@@ -14,6 +22,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
+app.UseCors("AllowAll");
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

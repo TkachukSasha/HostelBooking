@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Application\Hostel.Catalogue.Application\Hostel.Catalogue.Application.csproj" />
     <ProjectReference Include="..\..\Core\Domain\Hostel.Catalogue.Domain\Hostel.Catalogue.Domain.csproj" />
   </ItemGroup>
 

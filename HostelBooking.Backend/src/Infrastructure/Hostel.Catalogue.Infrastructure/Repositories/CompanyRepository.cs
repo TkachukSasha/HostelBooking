@@ -1,5 +1,5 @@
-﻿using Hostel.Catalogue.Domain.Entities;
-using Hostel.Catalogue.Domain.Repositories;
+﻿using Hostel.Catalogue.Application.Common.Repositories;
+using Hostel.Catalogue.Domain.Entities;
 using Hostel.Catalogue.Infrastructure.Dal;
 using Microsoft.EntityFrameworkCore;
 

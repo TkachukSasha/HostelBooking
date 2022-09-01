@@ -1,7 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using System.Reflection;
 
-namespace Hostel.Security.Api.Extensions
+namespace Hostel.Catalogue.Api.Extensions
 {
     public static class Extension
     {
@@ -23,7 +23,7 @@ namespace Hostel.Security.Api.Extensions
 
             services.AddSwaggerGen(x =>
             {
-                x.SwaggerDoc("v1", new OpenApiInfo { Title = "Hostel Security", Version = "v1" });
+                x.SwaggerDoc("v1", new OpenApiInfo { Title = "Hostel Catalogue", Version = "v1" });
 
                 x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {

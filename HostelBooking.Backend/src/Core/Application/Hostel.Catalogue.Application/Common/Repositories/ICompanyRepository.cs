@@ -1,6 +1,6 @@
 ﻿using Hostel.Catalogue.Domain.Entities;
 
-namespace Hostel.Catalogue.Domain.Repositories
+namespace Hostel.Catalogue.Application.Common.Repositories
 {
     public interface ICompanyRepository
     {
