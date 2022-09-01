@@ -8,5 +8,6 @@
         public static string InvalidNumber => "invalid_number";
         public static string InvalidFloor => "invalid_floor";
         public static string InvalidCapacity => "invalid_capacity";
+        public static string InvalidDate => "invalid_date";
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Hostel.Security.Domain.Repositories;
+using Hostel.Shared.Types;
 
 namespace Hostel.Security.Infrastructure.Repositories
 {

@@ -3,6 +3,7 @@ using Hostel.Security.Application.Common.Security.Options;
 using Hostel.Security.Domain.Repositories;
 using Hostel.Security.Infrastructure.Repositories;
 using Hostel.Shared.Exceptions.Middleware;
+using Hostel.Shared.Types;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

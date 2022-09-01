@@ -5,11 +5,6 @@ namespace Hostel.Catalogue.Domain.Entities
 {
     public sealed class Room : BaseEntity, IBaseEntity
     {
-        public Room()
-        {
-            Reservations = new HashSet<Reservation>();
-        }
-
         public Room(int number,
                     int floor,
                     int capacity)
@@ -27,7 +22,5 @@ namespace Hostel.Catalogue.Domain.Entities
         public int CompanyId { get; set; }
 
         public Company Company { get; set; }
-
-        public ICollection<Reservation> Reservations { get; set; }
     }
 }

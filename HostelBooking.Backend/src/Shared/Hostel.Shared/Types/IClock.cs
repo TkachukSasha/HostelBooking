@@ -1,4 +1,4 @@
-﻿namespace Hostel.Security.Domain.Repositories
+﻿namespace Hostel.Shared.Types
 {
     public interface IClock
     {

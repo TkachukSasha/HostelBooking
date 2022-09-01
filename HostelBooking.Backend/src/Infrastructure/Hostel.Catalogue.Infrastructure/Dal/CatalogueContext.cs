@@ -7,7 +7,6 @@ namespace Hostel.Catalogue.Infrastructure.Dal
     {
         public DbSet<Company> Company { get; set; }
         public DbSet<Room> Room { get; set; }
-        public DbSet<Reservation> Reservation { get; set; }
 
         public CatalogueContext(DbContextOptions<CatalogueContext> options) : base(options)
         {
