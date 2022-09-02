@@ -4,6 +4,7 @@ using Hostel.Catalogue.Application.Commands.Companies.Update;
 using Hostel.Catalogue.Application.Commands.Rooms.Create;
 using Hostel.Catalogue.Application.Commands.Rooms.Delete;
 using Hostel.Catalogue.Application.Commands.Rooms.Update;
+using Hostel.Catalogue.Application.Common.Cache;
 using Hostel.Catalogue.Application.Common.Mapper;
 using Hostel.Catalogue.Application.Dto.Company;
 using Hostel.Catalogue.Application.Dto.Room;
@@ -13,6 +14,8 @@ using Hostel.Catalogue.Application.Queries.Rooms.GetListRooms;
 using Hostel.Catalogue.Application.Queries.Rooms.GetRoomById;
 using Hostel.Catalogue.Domain.Entities;
 using Hostel.Shared.Types;
+using Hostel.Shared.Types.Cache;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 namespace Hostel.Catalogue.Application.Extensions
 {
@@ -47,6 +50,24 @@ namespace Hostel.Catalogue.Application.Extensions
             services.AddScoped<ICommandHandler<CreateRoom, RoomReturnDto>, CreateRoomCommandHandler>();
             services.AddScoped<ICommandHandler<UpdateRoom, RoomReturnDto>, UpdateRoomCommandHandler>();
             services.AddScoped<ICommandHandler<DeleteRoom, RoomReturnDto>, DeleteRoomCommandHandler>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddRedis(this IServiceCollection services,
+              IConfiguration configuration)
+        {
+            var redisCacheSettings = new RedisCacheSettings();
+            configuration.GetSection(nameof(RedisCacheSettings)).Bind(redisCacheSettings);
+            services.AddSingleton(redisCacheSettings);
+
+            //if (!redisCacheSettings.Enabled)
+            //{
+            //    return;
+            //}
+
+            services.AddStackExchangeRedisCache(options => options.Configuration = redisCacheSettings.ConnectionString);
+            services.AddSingleton<ICacheRepository, CacheRepository>();
 
             return services;
         }

@@ -7,6 +7,7 @@ using Hostel.Catalogue.Application.Queries.Rooms.GetListRooms;
 using Hostel.Catalogue.Application.Queries.Rooms.GetRoomById;
 using Hostel.Catalogue.Domain.Entities;
 using Hostel.Shared.Types;
+using Hostel.Shared.Types.Attributes;
 using Hostel.Shared.Types.Const;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -49,6 +50,7 @@ namespace Hostel.Catalogue.Api.Controllers.V1
         [AllowAnonymous]
         [Route(Routes.GetRooms)]
         [HttpGet]
+        [Cached(600)]
         public async Task<ActionResult<IEnumerable<Room>>> GetRooms([FromQuery] GetRooms query)
         {
             var rooms = await _getRoomsHandler.HandleAsync(query);

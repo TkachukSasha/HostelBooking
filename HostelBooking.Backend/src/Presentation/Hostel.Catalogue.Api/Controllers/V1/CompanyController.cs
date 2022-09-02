@@ -7,6 +7,7 @@ using Hostel.Catalogue.Application.Queries.Companies.GetCompanyById;
 using Hostel.Catalogue.Application.Queries.Companies.GetListCompanies;
 using Hostel.Catalogue.Domain.Entities;
 using Hostel.Shared.Types;
+using Hostel.Shared.Types.Attributes;
 using Hostel.Shared.Types.Const;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -48,6 +49,7 @@ namespace Hostel.Catalogue.Api.Controllers.V1
         [AllowAnonymous]
         [Route(Routes.GetCompanies)]
         [HttpGet]
+        [Cached(600)]
         public async Task<ActionResult<IEnumerable<Company>>> GetCompanies([FromQuery] GetCompanies query)
         {
             var companies = await _getCompaniesHandler.HandleAsync(query);

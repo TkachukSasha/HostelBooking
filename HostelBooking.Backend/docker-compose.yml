@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  maindb:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
+  cachedb:
+    image: redis:alpine
+
+  hostel.catalogue.api:
+    image: ${DOCKER_REGISTRY-}hostelcatalogueapi
+    build:
+      context: .
+      dockerfile: src/Presentation/Hostel.Catalogue.Api/Dockerfile
+
+  hostel.security.api:
+    image: ${DOCKER_REGISTRY-}hostelsecurityapi
+    build:
+      context: .
+      dockerfile: src/Presentation/Hostel.Security.Api/Dockerfile
+

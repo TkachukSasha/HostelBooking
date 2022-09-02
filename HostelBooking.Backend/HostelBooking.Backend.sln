@@ -25,17 +25,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{882CB9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{6717E457-DF96-478A-AB1D-E2B1A15C06BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hostel.Security.Domain", "src\Core\Domain\Hostel.Security.Domain\Hostel.Security.Domain.csproj", "{637D120F-FAEF-417B-ABBA-E55BD544915B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hostel.Security.Domain", "src\Core\Domain\Hostel.Security.Domain\Hostel.Security.Domain.csproj", "{637D120F-FAEF-417B-ABBA-E55BD544915B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hostel.Catalogue.Domain", "src\Core\Domain\Hostel.Catalogue.Domain\Hostel.Catalogue.Domain.csproj", "{4D8411F1-B0C9-439D-B954-8BA821BEF1A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hostel.Catalogue.Domain", "src\Core\Domain\Hostel.Catalogue.Domain\Hostel.Catalogue.Domain.csproj", "{4D8411F1-B0C9-439D-B954-8BA821BEF1A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hostel.Security.Application", "src\Core\Application\Hostel.Security.Application\Hostel.Security.Application.csproj", "{86A0100A-0C11-4FB2-A8C1-27BE546B6277}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hostel.Security.Application", "src\Core\Application\Hostel.Security.Application\Hostel.Security.Application.csproj", "{86A0100A-0C11-4FB2-A8C1-27BE546B6277}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hostel.Catalogue.Application", "src\Core\Application\Hostel.Catalogue.Application\Hostel.Catalogue.Application.csproj", "{F006F854-9EBA-4EBD-AEAF-453BC10BE56E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hostel.Catalogue.Application", "src\Core\Application\Hostel.Catalogue.Application\Hostel.Catalogue.Application.csproj", "{F006F854-9EBA-4EBD-AEAF-453BC10BE56E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{B95BAB39-D6C3-4013-BD9C-12CB0DAEC0DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hostel.Shared", "src\Shared\Hostel.Shared\Hostel.Shared.csproj", "{9AA0ABBB-5DAE-485A-847B-5958F6203423}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hostel.Shared", "src\Shared\Hostel.Shared\Hostel.Shared.csproj", "{9AA0ABBB-5DAE-485A-847B-5958F6203423}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9940F589-5ABD-4F53-A1C1-0ED2B3E496BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{9AA0ABBB-5DAE-485A-847B-5958F6203423}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AA0ABBB-5DAE-485A-847B-5958F6203423}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AA0ABBB-5DAE-485A-847B-5958F6203423}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9940F589-5ABD-4F53-A1C1-0ED2B3E496BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9940F589-5ABD-4F53-A1C1-0ED2B3E496BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9940F589-5ABD-4F53-A1C1-0ED2B3E496BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9940F589-5ABD-4F53-A1C1-0ED2B3E496BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
