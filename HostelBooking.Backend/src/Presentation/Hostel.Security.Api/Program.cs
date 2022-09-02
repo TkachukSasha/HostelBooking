@@ -13,7 +13,7 @@ builder.Services.AddDefaultServices();
 
 var app = builder.Build();
 
-app.MigrateDatabase(app.Configuration);
+//app.MigrateDatabase(app.Configuration);
 
 if (app.Environment.IsDevelopment())
 {

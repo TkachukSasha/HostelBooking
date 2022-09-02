@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using Hostel.Catalogue.Application.Common.Repositories;
+using Hostel.Catalogue.Application.Dto.Room;
 using Hostel.Catalogue.Domain.Entities;
 using Hostel.Shared.Types;
 
 namespace Hostel.Catalogue.Application.Commands.Rooms.Create
 {
-    public class CreateRoom : ICommand
+    public class CreateRoom : ICommand<RoomReturnDto>
     {
-        public int RoomId { get; set; }
         public int Number { get; set; }
         public int Floor { get; set; }
         public int Capacity { get; set; }
@@ -15,7 +15,7 @@ namespace Hostel.Catalogue.Application.Commands.Rooms.Create
         public int CompanyId { get; set; }
     }
 
-    public class CreateRoomCommandHandler : ICommandHandler<CreateRoom, int>
+    public class CreateRoomCommandHandler : ICommandHandler<CreateRoom, RoomReturnDto>
     {
         private readonly IRoomRepository _roomRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -30,7 +30,7 @@ namespace Hostel.Catalogue.Application.Commands.Rooms.Create
             _mapper = mapper;
         }
 
-        public async Task<int> HandleAsync(CreateRoom command, CancellationToken cancellationToken)
+        public async Task<RoomReturnDto> HandleAsync(CreateRoom command, CancellationToken cancellationToken)
         {
             var room = _mapper.Map<Room>(command);
 
@@ -38,7 +38,9 @@ namespace Hostel.Catalogue.Application.Commands.Rooms.Create
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return room.CompanyId;
+            var returnRoom = _mapper.Map<RoomReturnDto>(room);
+
+            return returnRoom;
         }
     }
 }

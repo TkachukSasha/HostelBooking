@@ -16,7 +16,7 @@ namespace Hostel.Catalogue.Domain.ValueObjects
             Value = value;
         }
 
-        public static implicit operator Capacity(int value) => new Capacity(value);
+        public static implicit operator Capacity(int value) => value is 0 ? 0 : new Capacity(value);
         public static implicit operator int(Capacity value) => value.Value;
 
         public override bool Equals(object obj) => obj is Capacity && Equals((Capacity)obj);

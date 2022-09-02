@@ -1,4 +1,4 @@
-﻿namespace Hostel.Security.Application.Common.Security.Options
+﻿namespace Hostel.Shared.Types
 {
     public class JwtOptions
     {

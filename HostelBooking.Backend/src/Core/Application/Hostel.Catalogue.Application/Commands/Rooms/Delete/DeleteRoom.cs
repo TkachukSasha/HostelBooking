@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using Hostel.Catalogue.Application.Common.Repositories;
+using Hostel.Catalogue.Application.Dto.Room;
 using Hostel.Catalogue.Domain.Entities;
 using Hostel.Shared.Types;
 
 namespace Hostel.Catalogue.Application.Commands.Rooms.Delete
 {
-    public class DeleteRoom : ICommand
+    public class DeleteRoom : ICommand<RoomReturnDto>
     {
-        public int RoomId { get; set; }
     }
 
-    public class DeleteRoomCommandHandler : ICommandHandler<DeleteRoom, int>
+    public class DeleteRoomCommandHandler : ICommandHandler<DeleteRoom, RoomReturnDto>
     {
         private readonly IRoomRepository _roomRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -25,7 +25,7 @@ namespace Hostel.Catalogue.Application.Commands.Rooms.Delete
             _mapper = mapper;
         }
 
-        public async Task<int> HandleAsync(DeleteRoom command, CancellationToken cancellationToken)
+        public async Task<RoomReturnDto> HandleAsync(DeleteRoom command, CancellationToken cancellationToken)
         {
             var room = _mapper.Map<Room>(command);
 
@@ -33,7 +33,9 @@ namespace Hostel.Catalogue.Application.Commands.Rooms.Delete
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return room.RoomId;
+            var returnRoom = _mapper.Map<RoomReturnDto>(room);
+
+            return returnRoom;
         }
     }
 }

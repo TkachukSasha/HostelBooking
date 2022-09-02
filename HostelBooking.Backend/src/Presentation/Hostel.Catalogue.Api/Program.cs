@@ -6,13 +6,13 @@ using Hostel.Catalogue.Infrastructure.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDatabase();
-builder.Services.AddInfrastructure();
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddDefaultServices();
 
 var app = builder.Build();
 
-app.MigrateDatabase(app.Configuration);
+//app.MigrateDatabase(app.Configuration);
 
 if (app.Environment.IsDevelopment())
 {

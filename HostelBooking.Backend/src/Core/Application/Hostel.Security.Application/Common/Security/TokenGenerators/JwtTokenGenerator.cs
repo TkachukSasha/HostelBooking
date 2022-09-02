@@ -1,5 +1,5 @@
-﻿using Hostel.Security.Application.Common.Security.Options;
-using Hostel.Security.Domain.Entities;
+﻿using Hostel.Security.Domain.Entities;
+using Hostel.Shared.Types;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -43,7 +43,7 @@ namespace Hostel.Security.Application.Common.Security.TokenGenerators
             List<Claim> claims = new List<Claim>()
             {
                 new Claim("UserId", user.UserId.ToString()),
-                new Claim("Role", user.Role.ToString())
+                new Claim(ClaimTypes.Role, user.Role.ToString())
             };
 
             DateTime expirationTime = DateTime.UtcNow.AddMinutes(_jwtOptions.AccessTokenExpirationMinutes);

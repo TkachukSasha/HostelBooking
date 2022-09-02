@@ -5,6 +5,8 @@ using Hostel.Catalogue.Application.Commands.Rooms.Create;
 using Hostel.Catalogue.Application.Commands.Rooms.Delete;
 using Hostel.Catalogue.Application.Commands.Rooms.Update;
 using Hostel.Catalogue.Application.Common.Mapper;
+using Hostel.Catalogue.Application.Dto.Company;
+using Hostel.Catalogue.Application.Dto.Room;
 using Hostel.Catalogue.Application.Queries.Companies.GetCompanyById;
 using Hostel.Catalogue.Application.Queries.Companies.GetListCompanies;
 using Hostel.Catalogue.Application.Queries.Rooms.GetListRooms;
@@ -20,31 +22,31 @@ namespace Hostel.Catalogue.Application.Extensions
         {
             services.AddAutoMapper(typeof(CatalogueProfile));
 
-            services.AddScoped<ICommand, CreateCompany>();
-            services.AddScoped<ICommand, UpdateCompany>();
-            services.AddScoped<ICommand, DeleteCompany>();
-            services.AddScoped<ICommandHandler<CreateCompany, int>, CreateCompanyCommandHandler>();
-            services.AddScoped<ICommandHandler<UpdateCompany, int>, UpdateCompanyCommandHandler>();
-            services.AddScoped<ICommandHandler<DeleteCompany, int>, DeleteCompanyCommandHandler>();
-
             services.AddScoped<IQuery<IEnumerable<Company>>, GetCompanies>();
-            services.AddScoped<IQueryHandler<GetCompanies, IEnumerable<Company>>, GetCompamiesQueryHandler>();
+            services.AddScoped<IQueryHandler<GetCompanies, IEnumerable<Company>>, GetCompaniesQueryHandler>();
 
             services.AddScoped<IQuery<Company>, GetCompany>();
             services.AddScoped<IQueryHandler<GetCompany, Company>, GetCompanyQueryHandler>();
 
-            services.AddScoped<ICommand, CreateRoom>();
-            services.AddScoped<ICommand, UpdateRoom>();
-            services.AddScoped<ICommand, DeleteRoom>();
-            services.AddScoped<ICommandHandler<CreateRoom, int>, CreateRoomCommandHandler>();
-            services.AddScoped<ICommandHandler<UpdateRoom, int>, UpdateRoomCommandHandler>();
-            services.AddScoped<ICommandHandler<DeleteRoom, int>, DeleteRoomCommandHandler>();
+            services.AddScoped<ICommand<CompanyReturnDto>, CreateCompany>();
+            services.AddScoped<ICommand<CompanyReturnDto>, UpdateCompany>();
+            services.AddScoped<ICommand<CompanyReturnDto>, DeleteCompany>();
+            services.AddScoped<ICommandHandler<CreateCompany, CompanyReturnDto>, CreateCompanyCommandHandler>();
+            services.AddScoped<ICommandHandler<UpdateCompany, CompanyReturnDto>, UpdateCompanyCommandHandler>();
+            services.AddScoped<ICommandHandler<DeleteCompany, CompanyReturnDto>, DeleteCompanyCommandHandler>();
 
             services.AddScoped<IQuery<Room>, GetRoom>();
             services.AddScoped<IQueryHandler<GetRoom, Room>, GetRoomQueryHandler>();
 
             services.AddScoped<IQuery<IEnumerable<Room>>, GetRooms>();
             services.AddScoped<IQueryHandler<GetRooms, IEnumerable<Room>>, GetRoomsQueryHandler>();
+
+            services.AddScoped<ICommand<RoomReturnDto>, CreateRoom>();
+            services.AddScoped<ICommand<RoomReturnDto>, UpdateRoom>();
+            services.AddScoped<ICommand<RoomReturnDto>, DeleteRoom>();
+            services.AddScoped<ICommandHandler<CreateRoom, RoomReturnDto>, CreateRoomCommandHandler>();
+            services.AddScoped<ICommandHandler<UpdateRoom, RoomReturnDto>, UpdateRoomCommandHandler>();
+            services.AddScoped<ICommandHandler<DeleteRoom, RoomReturnDto>, DeleteRoomCommandHandler>();
 
             return services;
         }

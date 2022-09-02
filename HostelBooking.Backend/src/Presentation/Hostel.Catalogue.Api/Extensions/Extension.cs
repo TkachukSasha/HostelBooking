@@ -27,11 +27,12 @@ namespace Hostel.Catalogue.Api.Extensions
 
                 x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = "JWT Authorization header using the bearer scheme",
-                    Name = "Authorization",
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey
-
+                    Name = "Authorization",
+                    Description = "Bearer Authentication with JWT Token",
+                    Type = SecuritySchemeType.Http
                 });
 
                 x.AddSecurityRequirement(new OpenApiSecurityRequirement

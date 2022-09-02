@@ -21,7 +21,7 @@ namespace Hostel.Catalogue.Domain.ValueObjects
             Value = value;
         }
 
-        public static implicit operator Floor(int value) => new Floor(value);
+        public static implicit operator Floor(int value) => value is 0 ? 0 : new Floor(value);
         public static implicit operator int(Floor value) => value.Value;
 
         public override bool Equals(object obj) => obj is Floor && Equals((Floor)obj);

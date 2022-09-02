@@ -16,7 +16,7 @@ namespace Hostel.Catalogue.Domain.ValueObjects
             Value = value;
         }
 
-        public static implicit operator Number(int value) => new Number(value);
+        public static implicit operator Number(int value) => value is 0 ? 0 : new Number(value);
         public static implicit operator int(Number value) => value.Value;
 
         public override bool Equals(object obj) => obj is Number && Equals((Number)obj);

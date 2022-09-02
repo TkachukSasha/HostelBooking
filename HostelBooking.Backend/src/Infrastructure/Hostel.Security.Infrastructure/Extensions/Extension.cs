@@ -1,5 +1,4 @@
 ﻿using Hostel.Security.Application.Common.Repositories;
-using Hostel.Security.Application.Common.Security.Options;
 using Hostel.Security.Domain.Repositories;
 using Hostel.Security.Infrastructure.Repositories;
 using Hostel.Shared.Exceptions.Middleware;

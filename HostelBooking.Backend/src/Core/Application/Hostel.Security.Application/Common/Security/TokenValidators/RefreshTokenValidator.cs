@@ -1,4 +1,4 @@
-﻿using Hostel.Security.Application.Common.Security.Options;
+﻿using Hostel.Shared.Types;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;

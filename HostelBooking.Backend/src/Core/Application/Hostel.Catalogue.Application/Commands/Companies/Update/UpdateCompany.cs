@@ -1,20 +1,20 @@
 ﻿using AutoMapper;
 using Hostel.Catalogue.Application.Common.Repositories;
+using Hostel.Catalogue.Application.Dto.Company;
 using Hostel.Catalogue.Domain.Entities;
 using Hostel.Shared.Types;
 
 namespace Hostel.Catalogue.Application.Commands.Companies.Update
 {
-    public class UpdateCompany : ICommand
+    public class UpdateCompany : ICommand<CompanyReturnDto>
     {
-        public int CompanyId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string City { get; set; }
         public bool? IsDeleted { get; set; }
     }
 
-    public class UpdateCompanyCommandHandler : ICommandHandler<UpdateCompany, int>
+    public class UpdateCompanyCommandHandler : ICommandHandler<UpdateCompany, CompanyReturnDto>
     {
         private readonly ICompanyRepository _companyRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -29,7 +29,7 @@ namespace Hostel.Catalogue.Application.Commands.Companies.Update
             _mapper = mapper;
         }
 
-        public async Task<int> HandleAsync(UpdateCompany command, CancellationToken cancellationToken)
+        public async Task<CompanyReturnDto> HandleAsync(UpdateCompany command, CancellationToken cancellationToken)
         {
             var company = _mapper.Map<Company>(command);
 
@@ -37,7 +37,9 @@ namespace Hostel.Catalogue.Application.Commands.Companies.Update
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return company.CompanyId;
+            var returnCompany = _mapper.Map<CompanyReturnDto>(company);
+
+            return returnCompany;
         }
     }
 }

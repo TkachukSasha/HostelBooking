@@ -9,12 +9,12 @@ namespace Hostel.Catalogue.Application.Queries.Companies.GetListCompanies
     {
     }
 
-    public class GetCompamiesQueryHandler : IQueryHandler<GetCompanies, IEnumerable<Company>>
+    public class GetCompaniesQueryHandler : IQueryHandler<GetCompanies, IEnumerable<Company>>
     {
         private readonly ICompanyRepository _companyRepository;
         private readonly IMapper _mapper;
 
-        public GetCompamiesQueryHandler(ICompanyRepository companyRepository,
+        public GetCompaniesQueryHandler(ICompanyRepository companyRepository,
                                         IMapper mapper)
         {
             _companyRepository = companyRepository; 

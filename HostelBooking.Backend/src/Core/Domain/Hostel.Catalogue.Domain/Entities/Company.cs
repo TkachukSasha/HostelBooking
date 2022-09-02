@@ -12,14 +12,16 @@ namespace Hostel.Catalogue.Domain.Entities
 
         public Company(string name,
                        string description,
-                       string city)
+                       string city,
+                       bool isDeleted)
         {
             Name = name;
             Description = description;
             City = city;
+            IsDeleted = isDeleted;
         }
 
-        public int CompanyId { get; set; }
+        public int CompanyId { get; private set; }
         public Name Name { get; private set; }
         public Description Description { get; private set; }
         public City City { get; private set; }
