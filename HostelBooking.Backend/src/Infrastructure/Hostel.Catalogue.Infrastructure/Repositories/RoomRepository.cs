@@ -2,17 +2,20 @@
 using Hostel.Catalogue.Domain.Entities;
 using Hostel.Catalogue.Infrastructure.Dal;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace Hostel.Catalogue.Infrastructure.Repositories
 {
     public class RoomRepository : IRoomRepository, IDisposable
     {
         private CatalogueContext _context;
+        private readonly ILogger _logger;
         private bool _disposed;
 
-        public RoomRepository(CatalogueContext context)
+        public RoomRepository(CatalogueContext context,
+                              ILogger logger)
         {
-            _context = context;
+            (_context, _logger) = (context, logger);
         }
 
         public async Task<IEnumerable<Room>> GetAllRooms()
@@ -23,6 +26,7 @@ namespace Hostel.Catalogue.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, $"Exception: {ex.Message} when try to invoke get all rooms method");
                 throw;
             }
         }
@@ -35,6 +39,7 @@ namespace Hostel.Catalogue.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, $"Exception: {ex.Message} when try to invoke get room by id method");
                 throw;
             }
         }
@@ -49,6 +54,7 @@ namespace Hostel.Catalogue.Infrastructure.Repositories
             }
             catch(Exception ex)
             {
+                _logger.Error(ex, $"Exception: {ex.Message} when try to invoke add room method");
                 throw;
             }
         }
@@ -63,6 +69,7 @@ namespace Hostel.Catalogue.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, $"Exception: {ex.Message} when try to invoke update room method");
                 throw;
             }
         }
@@ -79,6 +86,7 @@ namespace Hostel.Catalogue.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, $"Exception: {ex.Message} when try to invoke delete room method");
                 throw;
             }
         }

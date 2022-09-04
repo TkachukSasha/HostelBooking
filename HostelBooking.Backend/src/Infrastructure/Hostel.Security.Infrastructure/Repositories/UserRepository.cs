@@ -2,17 +2,20 @@
 using Hostel.Security.Domain.Repositories;
 using Hostel.Security.Infrastructure.Dal;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace Hostel.Security.Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository, IDisposable
     {
         private SecurityContext _context;
+        private readonly ILogger _logger;
         private bool _disposed;
 
-        public UserRepository(SecurityContext context)
+        public UserRepository(SecurityContext context,
+                              ILogger logger)
         {
-            _context = context;
+            (_context, _logger) = (context, logger);
         }
 
         public async Task<User> GetByEmailAsync(string email)
@@ -24,6 +27,7 @@ namespace Hostel.Security.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, $"Exception: {ex.Message} when try to invoke get by email method");
                 throw ex;
             }
         }
@@ -37,6 +41,7 @@ namespace Hostel.Security.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, $"Exception: {ex.Message} when try to invoke get by id method");
                 throw ex;
             }
         }
@@ -50,6 +55,7 @@ namespace Hostel.Security.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, $"Exception: {ex.Message} when try to invoke add user method");
                 throw ex;
             }
         }

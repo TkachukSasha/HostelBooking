@@ -18,7 +18,6 @@ namespace Hostel.Security.Application.Commands.Login
     public class SignInHandler : ICommandHandler<SignIn>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly AccessTokenGenerator _accessTokenGenerator;
         private readonly RefreshTokenGenerator _refreshTokenGenerator;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
@@ -27,7 +26,6 @@ namespace Hostel.Security.Application.Commands.Login
 
         public SignInHandler(
             IUserRepository userRepository,
-            IUnitOfWork unitOfWork,
             AccessTokenGenerator accessTokenGenerator,
             RefreshTokenGenerator refreshTokenGenerator,
             IRefreshTokenRepository refreshTokenRepository,
