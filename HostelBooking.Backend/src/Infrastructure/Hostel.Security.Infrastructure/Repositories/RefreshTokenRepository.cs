@@ -2,17 +2,20 @@
 using Hostel.Security.Domain.Repositories;
 using Hostel.Security.Infrastructure.Dal;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace Hostel.Security.Infrastructure.Repositories
 {
     public class RefreshTokenRepository : IRefreshTokenRepository, IDisposable
     {
         private SecurityContext _context;
+        private readonly ILogger _logger;
         private bool _disposed;
 
-        public RefreshTokenRepository(SecurityContext context)
+        public RefreshTokenRepository(SecurityContext context,
+                                      ILogger logger)
         {
-            _context = context;
+            (_context, _logger) = (context, logger);
         }
 
         public async Task<RefreshToken> GetByTokenAsync(string token)
@@ -24,6 +27,7 @@ namespace Hostel.Security.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, $"Exception: {ex.Message} when try to invoke get by token method");
                 throw ex;
             }
         }
@@ -38,6 +42,7 @@ namespace Hostel.Security.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, $"Exception: {ex.Message} when try to invoke delete token by id method");
                 throw ex;
             }
         }
@@ -51,6 +56,7 @@ namespace Hostel.Security.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, $"Exception: {ex.Message} when try to invoke create token method");
                 throw ex;
             }
         }
