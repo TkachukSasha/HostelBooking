@@ -2,8 +2,12 @@ using Hostel.Security.Api.Extensions;
 using Hostel.Security.Application.Extensions;
 using Hostel.Security.Infrastructure.Dal.Extensions;
 using Hostel.Security.Infrastructure.Extensions;
+using Hostel.Shared.Types.Logger;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog(SeriLogger.Configure);
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddDatabase();

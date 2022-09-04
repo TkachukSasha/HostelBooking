@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Hostel.Catalogue.Application.Commands.Rooms.Create;
+﻿using Hostel.Catalogue.Application.Commands.Rooms.Create;
 using Hostel.Catalogue.Application.Commands.Rooms.Delete;
 using Hostel.Catalogue.Application.Commands.Rooms.Update;
 using Hostel.Catalogue.Application.Dto.Room;
@@ -7,12 +6,10 @@ using Hostel.Catalogue.Application.Queries.Rooms.GetListRooms;
 using Hostel.Catalogue.Application.Queries.Rooms.GetRoomById;
 using Hostel.Catalogue.Domain.Entities;
 using Hostel.Shared.Types;
-using Hostel.Shared.Types.Attributes;
 using Hostel.Shared.Types.Const;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace Hostel.Catalogue.Api.Controllers.V1
 {
@@ -25,21 +22,18 @@ namespace Hostel.Catalogue.Api.Controllers.V1
         private readonly ICommandHandler<DeleteRoom, RoomReturnDto> _deleteRoomHandler;
         private readonly IQueryHandler<GetRooms, IEnumerable<Room>> _getRoomsHandler;
         private readonly IQueryHandler<GetRoom, Room> _getRoomHandler;
-        private readonly IMapper _mapper;
 
         public RoomController(ICommandHandler<CreateRoom, RoomReturnDto> createRoomHandle,
                               ICommandHandler<UpdateRoom, RoomReturnDto> updateRoomHandler,
                               ICommandHandler<DeleteRoom, RoomReturnDto> deleteRoomHandler,
                               IQueryHandler<GetRooms, IEnumerable<Room>> getRoomsHandler,
-                              IQueryHandler<GetRoom, Room> getRoomHandler,
-                              IMapper mapper)
+                              IQueryHandler<GetRoom, Room> getRoomHandler)
         {
             _createRoomHandler = createRoomHandle;
             _updateRoomHandler = updateRoomHandler;
             _deleteRoomHandler = deleteRoomHandler;
             _getRoomsHandler = getRoomsHandler;
             _getRoomHandler = getRoomHandler;
-            _mapper = mapper;
         }
 
         /// <summary>
@@ -50,7 +44,7 @@ namespace Hostel.Catalogue.Api.Controllers.V1
         [AllowAnonymous]
         [Route(Routes.GetRooms)]
         [HttpGet]
-        [Cached(600)]
+        //[Cached(600)]
         public async Task<ActionResult<IEnumerable<Room>>> GetRooms([FromQuery] GetRooms query)
         {
             var rooms = await _getRoomsHandler.HandleAsync(query);
@@ -67,7 +61,7 @@ namespace Hostel.Catalogue.Api.Controllers.V1
         [HttpGet]
         public async Task<ActionResult<Room>> GetRoomById([FromQuery] GetRoom query)
         {
-            var room = await _getRoomHandler.HandleAsync(new GetRoom { RoomId = query.RoomId});
+            var room = await _getRoomHandler.HandleAsync(new GetRoom { RoomId = query.RoomId });
             return Ok(room);
         }
 

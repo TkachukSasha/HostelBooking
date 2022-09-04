@@ -1,29 +1,48 @@
 version: '3.4'
 
 services:
-  maindb:
-    container_name: maindb
+  masterdb:
+    container_name: masterdb
     environment:
-        SA_PASSWORD: "123jaja123"
+        SA_PASSWORD: "Password1"
         ACCEPT_EULA: "Y"
     restart: always
     ports:
-        - "1435:1433"
+        - "1445:1433"
 
   cachedb:
     container_name: cachedb
     restart: always    
     ports:
-        - "6379:6379"
+        - "6380:6379"
+
+  elasticsearch:
+    container_name: elasticsearch
+    environment:
+        - xpack.monitoring.enabled=true
+        - xpack.watcher.enabled=false
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        - discovery.type=single-node
+    ports:
+        - "9200:9200"
+    volumes:
+        - elasticsearch-data:/usr/share/elasticsearch/data   
+
+  kibana:
+    container_name: kibana
+    environment:        
+        - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+        - elasticsearch
+    ports:
+        - "5601:5601"  
 
   hostel.security.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-      - "ConnectionStrings:DefaultConnection=Server=maindb;Database=Security.Api;User Id=sa;Password=qwerty1" 
-      - "RedisCacheSettings:ConnectionString=localhost:6379"
+      - "ConnectionStrings:DefaultConnection=Server=masterdb;Database=Security.Api;User Id=sa;Password=Password1" 
     depends_on: 
-      - maindb
+      - masterdb
     ports:
       - "8000:80"
     volumes:
@@ -33,8 +52,11 @@ services:
   hostel.catalogue.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-      - "ConnectionStrings:DefaultConnection=Server=maindb;Database=Catalogue.Api;User Id=sa;Password=qwerty1"  
+      - "ConnectionStrings:DefaultConnection=Server=masterdb;Database=Catalogue.Api;User Id=sa;Password=Password1"  
+      - "RedisCacheSettings:ConnectionString=cachedb:6380,abortConnect=False"
+    depends_on: 
+      - masterdb
+      - cachedb
     ports:
       - "8001:80"
     volumes:
