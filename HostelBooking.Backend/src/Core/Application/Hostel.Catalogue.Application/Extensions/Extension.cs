@@ -17,6 +17,8 @@ using Hostel.Shared.Types;
 using Hostel.Shared.Types.Cache;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
+
 namespace Hostel.Catalogue.Application.Extensions
 {
     public static class Extension
@@ -57,8 +59,8 @@ namespace Hostel.Catalogue.Application.Extensions
         public static IServiceCollection AddRedis(this IServiceCollection services,
               IConfiguration configuration)
         {
-            var redisCacheSettings = new RedisCacheSettings();
-            configuration.GetSection(nameof(RedisCacheSettings)).Bind(redisCacheSettings);
+            RedisCacheSettings redisCacheSettings = new RedisCacheSettings();
+            configuration.Bind("RedisCacheSettings", redisCacheSettings);
             services.AddSingleton(redisCacheSettings);
 
             //if (!redisCacheSettings.Enabled)

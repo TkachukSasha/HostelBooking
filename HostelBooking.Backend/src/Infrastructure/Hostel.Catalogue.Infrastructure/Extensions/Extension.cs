@@ -1,4 +1,5 @@
 ﻿using Hostel.Catalogue.Application.Common.Repositories;
+using Hostel.Catalogue.Infrastructure.Dal;
 using Hostel.Catalogue.Infrastructure.Repositories;
 using Hostel.Shared.Exceptions.Middleware;
 using Hostel.Shared.Types;

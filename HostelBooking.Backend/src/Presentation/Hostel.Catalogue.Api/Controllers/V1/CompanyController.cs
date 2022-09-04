@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Hostel.Catalogue.Application.Commands.Companies.Create;
+﻿using Hostel.Catalogue.Application.Commands.Companies.Create;
 using Hostel.Catalogue.Application.Commands.Companies.Delete;
 using Hostel.Catalogue.Application.Commands.Companies.Update;
 using Hostel.Catalogue.Application.Dto.Company;
@@ -7,7 +6,6 @@ using Hostel.Catalogue.Application.Queries.Companies.GetCompanyById;
 using Hostel.Catalogue.Application.Queries.Companies.GetListCompanies;
 using Hostel.Catalogue.Domain.Entities;
 using Hostel.Shared.Types;
-using Hostel.Shared.Types.Attributes;
 using Hostel.Shared.Types.Const;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -24,21 +22,18 @@ namespace Hostel.Catalogue.Api.Controllers.V1
         private readonly ICommandHandler<DeleteCompany, CompanyReturnDto> _deleteCompanyHandler;
         private readonly IQueryHandler<GetCompanies, IEnumerable<Company>> _getCompaniesHandler;
         private readonly IQueryHandler<GetCompany, Company> _getCompanyHandler;
-        private readonly IMapper _mapper;
 
         public CompanyController(ICommandHandler<CreateCompany, CompanyReturnDto> createCompanyHandle,
                               ICommandHandler<UpdateCompany, CompanyReturnDto> updateCompanyHandler,
                               ICommandHandler<DeleteCompany, CompanyReturnDto> deleteCompanyHandler,
                               IQueryHandler<GetCompanies, IEnumerable<Company>> getCompaniesHandler,
-                              IQueryHandler<GetCompany, Company> getCompanyHandler,
-                              IMapper mapper)
+                              IQueryHandler<GetCompany, Company> getCompanyHandler)
         {
             _createCompanyHandler = createCompanyHandle;
             _updateCompanyHandler = updateCompanyHandler;
             _deleteCompanyHandler = deleteCompanyHandler;
             _getCompaniesHandler = getCompaniesHandler;
             _getCompanyHandler = getCompanyHandler;
-            _mapper = mapper;
         }
 
         /// <summary>
@@ -49,7 +44,7 @@ namespace Hostel.Catalogue.Api.Controllers.V1
         [AllowAnonymous]
         [Route(Routes.GetCompanies)]
         [HttpGet]
-        [Cached(600)]
+        //[Cached(600)]
         public async Task<ActionResult<IEnumerable<Company>>> GetCompanies([FromQuery] GetCompanies query)
         {
             var companies = await _getCompaniesHandler.HandleAsync(query);

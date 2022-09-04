@@ -1,4 +1,6 @@
-﻿namespace Hostel.Shared.Types.Cache
+﻿using StackExchange.Redis;
+
+namespace Hostel.Shared.Types.Cache
 {
     public class RedisCacheSettings
     {
