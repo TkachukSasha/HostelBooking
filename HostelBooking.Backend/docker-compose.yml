@@ -13,6 +13,15 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.9.2
 
+  client:
+    image: client
+    build:
+      context: ../HostelBooking.Frontend
+      dockerfile: Dockerfile
+
+  proxy:
+    image: nginx:mainline
+
   hostel.catalogue.api:
     image: ${DOCKER_REGISTRY-}hostelcatalogueapi
     build:
