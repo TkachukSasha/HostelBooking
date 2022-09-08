@@ -4,17 +4,17 @@ services:
   masterdb:
     container_name: masterdb
     environment:
-        SA_PASSWORD: "Password1"
+        SA_PASSWORD: "Qwerty"
         ACCEPT_EULA: "Y"
     restart: always
     ports:
-        - "1445:1433"
+        - "1433:1433"
 
   cachedb:
     container_name: cachedb
     restart: always    
     ports:
-        - "6380:6379"
+        - "6379:6379"
 
   elasticsearch:
     container_name: elasticsearch
@@ -37,7 +37,7 @@ services:
 
   proxy: 
     volumes: 
-      - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
+      - "../nginx/nginx.conf:/etc/nginx/nginx.conf"
     ports:
       - "80:80"
 
@@ -48,7 +48,7 @@ services:
   hostel.security.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:DefaultConnection=Server=masterdb;Database=Security.Api;User Id=sa;Password=Password1" 
+      - "ConnectionStrings:DefaultConnection=Server=masterdb;Database=Security.Api;User Id=sa;Password=Qwerty" 
     depends_on: 
       - masterdb
     ports:
@@ -60,8 +60,8 @@ services:
   hostel.catalogue.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:DefaultConnection=Server=masterdb;Database=Catalogue.Api;User Id=sa;Password=Password1"  
-      - "RedisCacheSettings:ConnectionString=cachedb:6380"
+      - "ConnectionStrings:DefaultConnection=Server=masterdb;Database=Catalogue.Api;User Id=sa;Password=Qwerty"  
+      - "RedisCacheSettings:ConnectionString=cachedb:6379"
     depends_on: 
       - masterdb
       - cachedb
