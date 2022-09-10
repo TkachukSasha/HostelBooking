@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hostel.Catalogue.Api.Controllers.V1
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class RoomController : ControllerBase
     {
@@ -59,7 +58,7 @@ namespace Hostel.Catalogue.Api.Controllers.V1
         [AllowAnonymous]
         [Route(Routes.GetRoomById)]
         [HttpGet]
-        public async Task<ActionResult<Room>> GetRoomById([FromQuery] GetRoom query)
+        public async Task<ActionResult<Room>> GetRoom([FromQuery] GetRoom query)
         {
             var room = await _getRoomHandler.HandleAsync(new GetRoom { RoomId = query.RoomId });
             return Ok(room);

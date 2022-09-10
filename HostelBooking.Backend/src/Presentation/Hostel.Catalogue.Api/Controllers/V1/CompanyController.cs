@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hostel.Catalogue.Api.Controllers.V1
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class CompanyController : ControllerBase
     {
@@ -59,7 +58,7 @@ namespace Hostel.Catalogue.Api.Controllers.V1
         [AllowAnonymous]
         [Route(Routes.GetCompanyById)]
         [HttpGet]
-        public async Task<ActionResult<Company>> GetCompanyById([FromQuery] GetCompany query)
+        public async Task<ActionResult<Company>> GetCompany([FromQuery] GetCompany query)
         {
             var company = await _getCompanyHandler.HandleAsync(new GetCompany { CompanyId = query.CompanyId });
             return Ok(company);
